@@ -41,8 +41,6 @@ var removeUser = id => {
     return user;
 };
 
-var getMessage = msg => {return {message: msg}};
-
 app
     .route('/user')
     .get((req, res) => {
@@ -60,7 +58,7 @@ app
         if (user) 
             res.status(200).json(user);
         else 
-            res.status(404).json(getMessage('User not found'));
+            res.status(204).end();
     });
 
 app
@@ -70,7 +68,7 @@ app
         if (user) 
             res.status(200).json(user);
         else 
-            res.status(404).send(getMessage('User not found'));
+            res.status(204).end();
     })
     .delete((req, res) => {
         var user = removeUser(req.params.id);
@@ -78,7 +76,7 @@ app
             res.status(200).end();
         }
         else 
-            res.status(404).send(getMessage('User not found'));
+            res.status(204).end();
     })
     .put((req, res) => {
         var id = req.params.id;
@@ -88,7 +86,7 @@ app
         if (user) 
             res.status(200).json(user);
         else 
-            res.status(404).json(getMessage('User not found'));
+            res.status(204).end();
     });
 
 app.listen(3000, () => {
