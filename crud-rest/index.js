@@ -15,7 +15,7 @@ var users = [
 var getLastId = () => users.length ? users[users.length-1].id : 0;
 var nextId = () => getLastId() + 1;
 var getUser = id => users.find(user => user.id == id); 
-var sortedUsers = () => users.length > 1 ? users.sort((a,b) => a.id > b.id ? 1 : -1) : undefined;
+var sortedUsers = () => users.length > 0 ? users.sort((a,b) => a.id > b.id ? 1 : -1) : undefined;
 
 var addUser = (user) => {
     var id = nextId();
@@ -24,14 +24,14 @@ var addUser = (user) => {
     return user;
 };
 
-var updateUser = u => {
-    var user = getUser(u.id);
-    if (user) {
-        users = users.filter(u => u.id != user.id);
-        users.push(u);
-        return u;
+var updateUser = user => {
+    var u = getUser(user.id);
+    if (u) {
+        users = users.filter(us => us.id != u.id);
+        users.push(user);
+        return user;
     }
-    return user; 
+    return undefined; 
 };
 
 var removeUser = (id) => {
