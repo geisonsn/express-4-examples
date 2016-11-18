@@ -38,7 +38,7 @@ var removeUser = id => {
     var user = getUser(id);
     if (user)
         users = users.filter(u => u.id != id);
-    return undefined;
+    return user;
 };
 
 var getMessage = msg => {return {message: msg}};
