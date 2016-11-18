@@ -17,7 +17,7 @@ var nextId = () => getLastId() + 1;
 var getUser = id => users.find(user => user.id == id); 
 var sortedUsers = () => users.length > 0 ? users.sort((a,b) => a.id > b.id ? 1 : -1) : undefined;
 
-var addUser = (user) => {
+var addUser = user => {
     var id = nextId();
     user.id = id;
     users.push(user);
@@ -34,14 +34,14 @@ var updateUser = user => {
     return undefined; 
 };
 
-var removeUser = (id) => {
+var removeUser = id => {
     var user = getUser(id);
     if (user)
         users = users.filter(u => u.id != id);
-    return user;
+    return undefined;
 };
 
-var getMessage = (msg) => {return {message: msg}};
+var getMessage = msg => {return {message: msg}};
 
 app
     .route('/user')
